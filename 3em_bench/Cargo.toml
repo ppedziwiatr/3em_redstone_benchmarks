@@ -1,0 +1,19 @@
+[package]
+name = "bench"
+version = "0.1.0"
+authors = ["Divy Srivastava <dj.srivastava23@gmail.com>"]
+edition = "2021"
+
+[[bin]]
+name = "bench"
+path = "main.rs"
+
+[dependencies]
+three_em_executor = { path = "../3em/crates/executor" }
+three_em_arweave = { path = "../3em/crates/arweave" }
+tokio = { version = "1.10.1", features = ["full"] }
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
