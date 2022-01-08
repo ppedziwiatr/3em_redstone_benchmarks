@@ -1,4 +1,4 @@
-const SmartWeaveSdk = require("redstone-smartweave");
+const { SmartWeaveNodeFactory, LoggerFactory } = require("redstone-smartweave");
 const Arweave = require("arweave");
 
 const arweave = Arweave.init({
@@ -7,14 +7,10 @@ const arweave = Arweave.init({
   protocol: "https",
 });
 
-const smartweave = SmartWeaveSdk.SmartWeaveNodeFactory.memCached(
+const smartweave = SmartWeaveNodeFactory.memCached(
   arweave,
-  749180,
 );
 
 (async () => {
-  await smartweave.contract("t9T7DIOGxx4VWXoCEeYYarFYeERTpWIC1V3y-BPZgKE")
-    .setEvaluationOptions({
-      fcpOptimization: true,
-    }).readState(749180);
+  await SmartWeaveNodeFactory.fileCached(arweave, "./cached").contract("t9T7DIOGxx4VWXoCEeYYarFYeERTpWIC1V3y-BPZgKE").readState(749180);
 })();

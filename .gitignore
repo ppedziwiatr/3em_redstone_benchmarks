@@ -1,4 +1,4 @@
-3em/
 3em_bench/target/
+cached/
 redstone_bench/node_modules/
 *.json

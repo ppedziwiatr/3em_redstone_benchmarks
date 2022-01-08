@@ -1,0 +1,3 @@
+[submodule "3em"]
+	path = 3em
+	url = https://github.com/three-em/3em.git
