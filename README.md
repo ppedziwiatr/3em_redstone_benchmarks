@@ -1,4 +1,3 @@
-
 ## Setup
 
 ```bash
@@ -21,15 +20,17 @@ $ pip install numpy matplotlib
 
 ## End user benchmarks
 
-These benchmarks are what **you* as a CLI end-user care should care about the most.
+These benchmarks are what *_you_ as a CLI end-user care should care about the
+most.
 
 Measures:
-* Startup time
-* Filesystem cache
-* Execution performance
-* Interaction loading
-* Non-fixed block height
-* arweave.net gateway
+
+- Startup time
+- Filesystem cache
+- Execution performance
+- Interaction loading
+- Non-fixed block height
+- arweave.net gateway
 
 ```bash
 $ hyperfine '3em_bench/target/release/bench' 'node redstone_bench/main.js' --export-json bench1.json
@@ -37,16 +38,16 @@ $ hyperfine '3em_bench/target/release/bench' 'node redstone_bench/main.js' --exp
 
 ```
 Benchmark 1: 3em_bench/target/release/bench
-  Time (mean ± σ):      1.434 s ±  0.107 s    [User: 0.092 s, System: 0.009 s]
-  Range (min … max):    1.342 s …  1.722 s    10 runs
-
+  Time (mean ± σ):      31.1 ms ±   2.9 ms    [User: 25.8 ms, System: 5.9 ms]
+  Range (min … max):    27.9 ms …  43.5 ms    50 runs
+ 
 Benchmark 2: node redstone_bench/main.js
-  Time (mean ± σ):      6.084 s ±  0.529 s    [User: 0.427 s, System: 0.045 s]
-  Range (min … max):    5.517 s …  7.417 s    10 runs
+  Time (mean ± σ):     206.4 ms ±  45.8 ms    [User: 214.1 ms, System: 25.8 ms]
+  Range (min … max):   169.2 ms … 406.7 ms    50 runs
 
 Summary
   '3em_bench/target/release/bench' ran
-    4.24 ± 0.49 times faster than 'node redstone_bench/main.js'
+    6.63 ± 1.60 times faster than 'node redstone_bench/main.js'
 ```
 
 ![](./bench1.png)
@@ -55,24 +56,25 @@ Summary
 
 ### Without FS cache
 
-Same as above but clears the filesystem cache after each iteration. This is to measure raw network performance.
+Same as above but clears the filesystem cache after each iteration. This is to
+measure raw network performance.
 
 ```bash
-$ hyperfine --prepare 'rm -rf ~/.cache/3em' '3em_bench/target/release/bench' 'node redstone_bench/main.js' --export-json bench2.json
+$ hyperfine --prepare 'rm -rf ~/.cache/3em ./cached' '3em_bench/target/release/bench' 'node redstone_bench/main.js' --export-json bench2.json
 ```
 
 ```
 Benchmark 1: 3em_bench/target/release/bench
-  Time (mean ± σ):      4.503 s ±  0.339 s    [User: 0.065 s, System: 0.065 s]
-  Range (min … max):    4.191 s …  5.294 s    10 runs
-
+  Time (mean ± σ):      5.507 s ±  0.710 s    [User: 0.060 s, System: 0.071 s]
+  Range (min … max):    4.073 s …  6.362 s    10 runs
+ 
 Benchmark 2: node redstone_bench/main.js
-  Time (mean ± σ):      8.337 s ±  2.453 s    [User: 0.429 s, System: 0.042 s]
-  Range (min … max):    6.165 s … 13.274 s    10 runs
-
+  Time (mean ± σ):      8.460 s ±  2.066 s    [User: 0.428 s, System: 0.036 s]
+  Range (min … max):    6.758 s … 13.892 s    10 runs
+ 
 Summary
   '3em_bench/target/release/bench' ran
-    1.85 ± 0.56 times faster than 'node redstone_bench/main.js'
+    1.54 ± 0.42 times faster than 'node redstone_bench/main.js'
 ```
 
 ![](./bench2.png)
@@ -85,10 +87,10 @@ Library performance comparison.
 
 // TODO
 
-
 ## Host info
 
 Here's `inxi -Fxz` output for the host system used in the above benchmarks:
+
 ```
 System:
   Kernel: 5.13.0-7620-generic x86_64 bits: 64 compiler: N/A
