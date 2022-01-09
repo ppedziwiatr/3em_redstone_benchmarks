@@ -29,7 +29,6 @@ Measures:
 - Filesystem cache
 - Execution performance
 - Interaction loading
-- Non-fixed block height
 - arweave.net gateway
 
 ```bash
